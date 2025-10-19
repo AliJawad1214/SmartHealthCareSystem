@@ -1,0 +1,42 @@
+﻿@model SmartHealthcare.Core.ViewModels.AssignRoleViewModel
+@{
+    ViewData["Title"] = "Assign / Change Role";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+                <i class="bi bi-shield-check"></i> Assign or Change Role
+            </h4>
+            <a asp-action="Index" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+        </div>
+
+        <div class="card-body p-4">
+            <div class="mb-4">
+                <h5 class="text-secondary"><i class="bi bi-person-circle"></i> @Model.FullName</h5>
+                <p class="mb-1"><i class="bi bi-envelope"></i> <strong>@Model.Email</strong></p>
+            </div>
+
+            <form asp-action="AssignRole" method="post">
+                <input type="hidden" asp-for="UserId" />
+
+                <div class="mb-3">
+                    <label asp-for="SelectedRole" class="form-label fw-semibold">Select Role</label>
+                    <select asp-for="SelectedRole" asp-items="Model.Roles" class="form-select shadow-sm border-primary">
+                        <option value="">-- Choose a Role --</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success px-4">
+                    <i class="bi bi-save2"></i> Save Changes
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary ms-2">
+                    <i class="bi bi-x-circle"></i> Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
